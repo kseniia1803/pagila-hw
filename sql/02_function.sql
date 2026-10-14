@@ -4,7 +4,10 @@
  */
 CREATE OR REPLACE FUNCTION get_actor_ids(text) RETURNS TABLE(actor_id INTEGER) AS
 $$
--- FIXME: implementation goes here
+SELECT a.actor_id
+FROM actor a
+WHERE a.first_name ILIKE $1 || '%'
+ORDER BY a.actor_id;
 $$
 LANGUAGE SQL
 IMMUTABLE
